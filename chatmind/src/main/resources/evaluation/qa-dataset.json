@@ -1,0 +1,252 @@
+[
+  {
+    "question": "《西游记》的作者是谁？",
+    "expectedChunks": ["西游记"],
+    "expectedAnswer": "吴承恩"
+  },
+  {
+    "question": "《西游记》是什么类型的小说？",
+    "expectedChunks": ["西游记"],
+    "expectedAnswer": "神魔|神话|长篇"
+  },
+  {
+    "question": "《西游记》主要讲述了什么故事？",
+    "expectedChunks": ["西游记", "取经"],
+    "expectedAnswer": "取经|西天"
+  },
+  {
+    "question": "《西游记》成书于哪个朝代？",
+    "expectedChunks": ["西游记"],
+    "expectedAnswer": "明"
+  },
+  {
+    "question": "《西游记》中师徒一行共有几人？",
+    "expectedChunks": ["西游记"],
+    "expectedAnswer": "四|五"
+  },
+  {
+    "question": "唐三藏的俗名是什么？",
+    "expectedChunks": ["唐三藏"],
+    "expectedAnswer": "陈玄奘|陈祎"
+  },
+  {
+    "question": "唐三藏在取经团队中的角色是什么？",
+    "expectedChunks": ["唐三藏"],
+    "expectedAnswer": "师父|领袖|师傅"
+  },
+  {
+    "question": "唐三藏的身世有什么特别之处？",
+    "expectedChunks": ["唐三藏"],
+    "expectedAnswer": "金蝉子|转世|如来"
+  },
+  {
+    "question": "唐三藏的性格特点是什么？",
+    "expectedChunks": ["唐三藏"],
+    "expectedAnswer": "善良|慈悲|坚定|懦弱"
+  },
+  {
+    "question": "唐僧为什么要去西天取经？",
+    "expectedChunks": ["唐三藏", "取经"],
+    "expectedAnswer": "普度众生|佛法|真经"
+  },
+  {
+    "question": "孙悟空是谁？",
+    "expectedChunks": ["孙悟空"],
+    "expectedAnswer": "石猴|齐天大圣|斗战胜佛"
+  },
+  {
+    "question": "孙悟空有哪些本领？",
+    "expectedChunks": ["孙悟空"],
+    "expectedAnswer": "七十二变|筋斗云|火眼金睛"
+  },
+  {
+    "question": "孙悟空的武器是什么？",
+    "expectedChunks": ["孙悟空"],
+    "expectedAnswer": "金箍棒|如意金箍棒"
+  },
+  {
+    "question": "孙悟空曾经大闹过哪里？",
+    "expectedChunks": ["孙悟空"],
+    "expectedAnswer": "天宫"
+  },
+  {
+    "question": "孙悟空被封的佛号是什么？",
+    "expectedChunks": ["孙悟空"],
+    "expectedAnswer": "斗战胜佛"
+  },
+  {
+    "question": "猪八戒的法号是什么？",
+    "expectedChunks": ["猪八戒"],
+    "expectedAnswer": "悟能"
+  },
+  {
+    "question": "猪八戒的前身是什么？",
+    "expectedChunks": ["猪八戒"],
+    "expectedAnswer": "天蓬元帅"
+  },
+  {
+    "question": "猪八戒有什么性格特点？",
+    "expectedChunks": ["猪八戒"],
+    "expectedAnswer": "好吃懒做|贪吃|好色|懒"
+  },
+  {
+    "question": "猪八戒为什么被贬下凡间？",
+    "expectedChunks": ["猪八戒"],
+    "expectedAnswer": "调戏|嫦娥|醉酒"
+  },
+  {
+    "question": "猪八戒使用的武器是什么？",
+    "expectedChunks": ["猪八戒"],
+    "expectedAnswer": "九齿钉耙|钉耙"
+  },
+  {
+    "question": "沙僧的法号是什么？",
+    "expectedChunks": ["沙僧"],
+    "expectedAnswer": "悟净"
+  },
+  {
+    "question": "沙僧的前身是什么？",
+    "expectedChunks": ["沙僧"],
+    "expectedAnswer": "卷帘大将"
+  },
+  {
+    "question": "沙僧在取经途中主要负责什么？",
+    "expectedChunks": ["沙僧"],
+    "expectedAnswer": "挑担|行李|后勤"
+  },
+  {
+    "question": "沙僧为什么被贬到流沙河？",
+    "expectedChunks": ["沙僧"],
+    "expectedAnswer": "打碎|琉璃盏|蟠桃会"
+  },
+  {
+    "question": "沙僧的性格特点是什么？",
+    "expectedChunks": ["沙僧"],
+    "expectedAnswer": "忠厚|老实|任劳任怨|沉默"
+  },
+  {
+    "question": "历史上的玄奘法师是哪个朝代的人？",
+    "expectedChunks": ["玄奘"],
+    "expectedAnswer": "唐|唐朝"
+  },
+  {
+    "question": "玄奘法师为什么要去印度取经？",
+    "expectedChunks": ["玄奘"],
+    "expectedAnswer": "佛法|求法|佛经|疑惑"
+  },
+  {
+    "question": "玄奘法师西行取经历经了多少年？",
+    "expectedChunks": ["玄奘"],
+    "expectedAnswer": "十七|17|十九|19"
+  },
+  {
+    "question": "玄奘法师在印度最著名的求学地是哪里？",
+    "expectedChunks": ["玄奘"],
+    "expectedAnswer": "那烂陀|那烂陀寺"
+  },
+  {
+    "question": "玄奘法师的俗姓是什么？",
+    "expectedChunks": ["玄奘"],
+    "expectedAnswer": "陈"
+  },
+  {
+    "question": "玄奘回国后带回了多少部佛经？",
+    "expectedChunks": ["玄奘", "佛经"],
+    "expectedAnswer": "657|六百五十七"
+  },
+  {
+    "question": "玄奘回国后受到了谁的接见？",
+    "expectedChunks": ["玄奘", "回国"],
+    "expectedAnswer": "太宗|李世民|唐太宗"
+  },
+  {
+    "question": "玄奘回国后主要从事什么工作？",
+    "expectedChunks": ["玄奘", "回国"],
+    "expectedAnswer": "翻译|译经"
+  },
+  {
+    "question": "玄奘回国时受到了怎样的欢迎？",
+    "expectedChunks": ["玄奘", "回国"],
+    "expectedAnswer": "隆重|欢迎|盛大"
+  },
+  {
+    "question": "玄奘翻译佛经的地点在哪里？",
+    "expectedChunks": ["玄奘", "翻译"],
+    "expectedAnswer": "大慈恩寺|弘福寺|玉华宫"
+  },
+  {
+    "question": "《大唐西域记》是谁撰写的？",
+    "expectedChunks": ["大唐西域记"],
+    "expectedAnswer": "玄奘|辩机"
+  },
+  {
+    "question": "《大唐西域记》记载了哪些内容？",
+    "expectedChunks": ["大唐西域记"],
+    "expectedAnswer": "地理|风土|国家|见闻"
+  },
+  {
+    "question": "《大唐西域记》记载了多少个国家和地区？",
+    "expectedChunks": ["大唐西域记"],
+    "expectedAnswer": "110|一百一十|138|一百三十八"
+  },
+  {
+    "question": "辩机是谁？",
+    "expectedChunks": ["辩机"],
+    "expectedAnswer": "僧人|和尚|高阳公主"
+  },
+  {
+    "question": "辩机迷案涉及了哪位皇室成员？",
+    "expectedChunks": ["辩机"],
+    "expectedAnswer": "高阳公主"
+  },
+  {
+    "question": "辩机最终的结局是什么？",
+    "expectedChunks": ["辩机"],
+    "expectedAnswer": "腰斩|处死|被杀"
+  },
+  {
+    "question": "朱士行与猪八戒有什么关系？",
+    "expectedChunks": ["朱士行", "八戒"],
+    "expectedAnswer": "原型|prototype|灵感"
+  },
+  {
+    "question": "朱士行是什么身份？",
+    "expectedChunks": ["朱士行"],
+    "expectedAnswer": "僧人|和尚|比丘"
+  },
+  {
+    "question": "历史上的悟空是什么身份的人？",
+    "expectedChunks": ["悟空"],
+    "expectedAnswer": "僧人|唐朝|和尚"
+  },
+  {
+    "question": "石槃陀被认为是谁的原型？",
+    "expectedChunks": ["石槃陀"],
+    "expectedAnswer": "孙悟空|悟空"
+  },
+  {
+    "question": "石槃陀与玄奘是什么关系？",
+    "expectedChunks": ["石槃陀", "玄奘"],
+    "expectedAnswer": "向导|徒弟|弟子|胡人"
+  },
+  {
+    "question": "孙悟空的形象起源有哪些说法？",
+    "expectedChunks": ["孙悟空", "起源"],
+    "expectedAnswer": "哈奴曼|石槃陀|无支祁|猴"
+  },
+  {
+    "question": "敦煌壁画中有哪些与西游记相关的内容？",
+    "expectedChunks": ["敦煌", "壁画"],
+    "expectedAnswer": "猴|行者|取经|壁画"
+  },
+  {
+    "question": "孙悟空形象与印度神话有什么联系？",
+    "expectedChunks": ["孙悟空", "起源"],
+    "expectedAnswer": "哈奴曼|印度|神猴"
+  },
+  {
+    "question": "榆林窟的壁画描绘了什么取经场景？",
+    "expectedChunks": ["壁画", "取经"],
+    "expectedAnswer": "猴|行者|唐僧|壁画"
+  }
+]

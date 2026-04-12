@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kama.chatmind.mapper.LongTermMemoryMapper">
+
+    <resultMap id="BaseResultMap" type="com.kama.chatmind.model.entity.LongTermMemory">
+        <id property="id" column="id" jdbcType="VARCHAR"/>
+        <result property="agentId" column="agent_id" jdbcType="VARCHAR"/>
+        <result property="chatSessionId" column="chat_session_id" jdbcType="VARCHAR"/>
+        <result property="memoryKey" column="memory_key" jdbcType="VARCHAR"/>
+        <result property="memoryValue" column="memory_value" jdbcType="VARCHAR"/>
+        <result property="category" column="category" jdbcType="VARCHAR"/>
+        <result property="createdAt" column="created_at" jdbcType="TIMESTAMP"/>
+        <result property="updatedAt" column="updated_at" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, agent_id, chat_session_id, memory_key, memory_value, category, created_at, updated_at
+    </sql>
+
+    <select id="selectByAgentId" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"/>
+        FROM long_term_memory
+        WHERE agent_id = CAST(#{agentId} AS uuid)
+        ORDER BY updated_at DESC
+    </select>
+
+    <insert id="insert" parameterType="com.kama.chatmind.model.entity.LongTermMemory">
+        INSERT INTO long_term_memory
+        (agent_id, chat_session_id, memory_key, memory_value, category, created_at, updated_at)
+        VALUES (CAST(#{agentId} AS uuid), #{chatSessionId}, #{memoryKey}, #{memoryValue}, #{category}, #{createdAt}, #{updatedAt})
+        ON CONFLICT (agent_id, memory_key)
+        DO UPDATE SET memory_value = EXCLUDED.memory_value,
+                      chat_session_id = EXCLUDED.chat_session_id,
+                      updated_at = EXCLUDED.updated_at
+    </insert>
+
+    <delete id="deleteByAgentId">
+        DELETE FROM long_term_memory
+        WHERE agent_id = CAST(#{agentId} AS uuid)
+    </delete>
+
+</mapper>
