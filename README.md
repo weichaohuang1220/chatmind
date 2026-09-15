@@ -1,207 +1,217 @@
+<div align="center">
 
-# AI智能体助手-ChatMind
+**English** | [简体中文](./README.zh-CN.md)
 
-> 最后更新：2026-03-22
+</div>
 
-ChatMind 是一个全栈 AI Agent 聊天应用，基于 **Spring Boot 3.5.8 + Spring AI 1.1.0** 后端和 **React + TypeScript + Ant Design X** 前端构建。
+# ChatMind — AI Agent Assistant
 
-它不是"聊天机器人"，而是 Agent：**能规划、能调用工具、能检索知识库、还能把执行过程实时推给前端**。
+> Last updated: 2026-03-22
 
-系统采用 **Think-Execute 循环机制，能够理解复杂任务、规划执行步骤、调用外部工具，并基于 RAG 技术从知识库中检索相关信息，完成多步骤的复杂任务**。
+ChatMind is a full-stack AI Agent chat application, built on a **Spring Boot 3.5.8 + Spring AI
+1.1.0** backend and a **React + TypeScript + Ant Design X** frontend.
 
-项目重点亮点：
+It is not a "chatbot" but an Agent: **it can plan, call tools, retrieve from a knowledge base, and
+stream its execution process to the frontend in real time**.
 
-* 我实现了 Think-Execute 循环（自主决策）
-* 我实现了 工具调用框架（可扩展）
-* 我实现了 RAG + 向量检索（pgvector）
-* 我实现了 多模型切换架构（注册表模式）
-* 我实现了 SSE 实时推送（执行状态可视化）
+The system uses a **Think-Execute loop, enabling it to understand complex tasks, plan execution
+steps, invoke external tools, and retrieve relevant information from a knowledge base via RAG to
+complete multi-step complex tasks**.
+
+Project highlights:
+
+* A Think-Execute loop (autonomous decision-making)
+* A tool-calling framework (extensible)
+* RAG + vector retrieval (pgvector)
+* A multi-model switching architecture (registry pattern)
+* SSE real-time push (execution state visualization)
 
 ---
 
-## 技术栈
+## Tech Stack
 
-| 层级 | 技术 |
-|------|------|
-| 后端框架 | Spring Boot 3.5.8, Spring AI 1.1.0 |
-| 数据库 | PostgreSQL + pgvector (向量检索) |
+| Layer | Technology |
+|-------|-----------|
+| Backend framework | Spring Boot 3.5.8, Spring AI 1.1.0 |
+| Database | PostgreSQL + pgvector (vector retrieval) |
 | ORM | MyBatis |
-| 向量模型 | bge-m3 (Ollama, localhost:11434) |
+| Embedding model | bge-m3 (Ollama, localhost:11434) |
 | LLM | DeepSeek Chat, GLM-4 (ZhipuAI) |
-| 前端框架 | React 18, TypeScript, Vite |
-| UI 组件 | Ant Design 5, Ant Design X, Tailwind CSS |
-| 实时通信 | SSE (Server-Sent Events) |
+| Frontend framework | React 18, TypeScript, Vite |
+| UI components | Ant Design 5, Ant Design X, Tailwind CSS |
+| Real-time communication | SSE (Server-Sent Events) |
 
 ---
 
-## 功能模块一览
+## Feature Overview
 
-| # | 功能模块 | 状态 | 创建日期 |
-|---|---------|------|---------|
-| 1 | Agent CRUD + 多模型 | ✅ 已完成 | 2026-03-22 |
-| 2 | SSE 实时流式输出 | ✅ 已完成 | 2026-03-22 |
-| 3 | ReAct Agent 循环 (run → plan → step → think → execute) | ✅ 已完成 | 2026-03-22 |
-| 4 | RAG 知识库检索 (pgvector + bge-m3) | ✅ 已完成 | 2026-03-22 |
-| 5 | Brave Search 联网搜索工具 | ✅ 已完成 | 2026-03-22 |
-| 6 | Database Query 数据库查询工具 | ✅ 已完成 | 2026-03-22 |
-| 7 | Skill 技能编排系统 | ✅ 已完成 | 2026-03-22 |
-| 8 | 记忆压缩（滑动窗口 + LLM 摘要） | ✅ 已完成 | 2026-03-22 |
-| 9 | Chunk 重叠 + Metadata 标题 | ✅ 已完成 | 2026-03-22 |
-| 10 | Rerank 重排序 (LLM-based) | ✅ 已完成 | 2026-03-22 |
-| 11 | Plan 规划阶段 | ✅ 已完成 | 2026-03-22 |
-| 12 | Human-in-the-loop 人工确认 | ✅ 已完成 | 2026-03-22 |
-| 13 | 长期记忆（跨会话持久化） | ✅ 已完成 | 2026-03-22 |
-| 14 | QA 评测 + LLM-as-Judge | ✅ 已完成 | 2026-03-22 |
-| 15 | 全接口日志 (@Slf4j) | ✅ 已完成 | 2026-03-22 |
-| 16 | 前端 HITL 确认框 | ✅ 已完成 | 2026-03-22 |
-| 17 | 前端 Skill 配置面板 | ✅ 已完成 | 2026-03-22 |
-| 18 | 前端文档重处理按钮 | ✅ 已完成 | 2026-03-22 |
+| # | Feature Module | Status | Created |
+|---|---------------|--------|---------|
+| 1 | Agent CRUD + multi-model | ✅ Done | 2026-03-22 |
+| 2 | SSE real-time streaming output | ✅ Done | 2026-03-22 |
+| 3 | ReAct Agent loop (run → plan → step → think → execute) | ✅ Done | 2026-03-22 |
+| 4 | RAG knowledge base retrieval (pgvector + bge-m3) | ✅ Done | 2026-03-22 |
+| 5 | Brave Search web search tool | ✅ Done | 2026-03-22 |
+| 6 | Database Query tool | ✅ Done | 2026-03-22 |
+| 7 | Skill orchestration system | ✅ Done | 2026-03-22 |
+| 8 | Memory compression (sliding window + LLM summary) | ✅ Done | 2026-03-22 |
+| 9 | Chunk overlap + metadata titles | ✅ Done | 2026-03-22 |
+| 10 | Rerank (LLM-based) | ✅ Done | 2026-03-22 |
+| 11 | Plan phase | ✅ Done | 2026-03-22 |
+| 12 | Human-in-the-loop confirmation | ✅ Done | 2026-03-22 |
+| 13 | Long-term memory (cross-session persistence) | ✅ Done | 2026-03-22 |
+| 14 | QA evaluation + LLM-as-Judge | ✅ Done | 2026-03-22 |
+| 15 | Logging across all endpoints (@Slf4j) | ✅ Done | 2026-03-22 |
+| 16 | Frontend HITL confirmation dialog | ✅ Done | 2026-03-22 |
+| 17 | Frontend Skill configuration panel | ✅ Done | 2026-03-22 |
+| 18 | Frontend document reprocess button | ✅ Done | 2026-03-22 |
 
 ---
 
-## 快速启动
+## Quick Start
 
-### 环境要求
+### Requirements
 
-| 依赖 | 版本 | 说明 |
-|------|------|------|
-| JDK | 17+ | 后端编译运行 |
-| Maven | 3.8+ | 后端构建（或使用项目自带 `mvnw`） |
-| Node.js | 18+ | 前端构建运行 |
-| npm | 9+ | 前端包管理 |
-| PostgreSQL | 15+ | 数据库，需安装 pgvector 扩展 |
-| Ollama | latest | 本地运行 bge-m3 嵌入模型 |
+| Dependency | Version | Notes |
+|------------|---------|-------|
+| JDK | 17+ | Backend compilation and runtime |
+| Maven | 3.8+ | Backend build (or use the bundled `mvnw`) |
+| Node.js | 18+ | Frontend build and runtime |
+| npm | 9+ | Frontend package management |
+| PostgreSQL | 15+ | Database; requires the pgvector extension |
+| Ollama | latest | Runs the bge-m3 embedding model locally |
 
-### 第一步：数据库准备
+### Step 1: Prepare the database
 
 ```bash
-# 1. 启动 PostgreSQL
+# 1. Start PostgreSQL
 brew services start postgresql  # macOS
 
-# 2. 创建数据库
+# 2. Create the database
 psql -U postgres -c "CREATE DATABASE chatmind;"
 
-# 3. 安装 pgvector 扩展
+# 3. Install the pgvector extension
 psql -U postgres -d chatmind -c "CREATE EXTENSION IF NOT EXISTS vector;"
 ```
 
-> 默认连接信息（可在 `application.yaml` 修改）：
+> Default connection settings (change them in `application.yaml`):
 > - URL: `jdbc:postgresql://localhost:5432/chatmind`
-> - 用户名: `postgres`
-> - 密码: `123456`
+> - Username: `postgres`
+> - Password: `123456`
 
-### 第二步：启动 Ollama 嵌入模型
+### Step 2: Start the Ollama embedding model
 
 ```bash
-# 1. 安装 Ollama（如未安装）
+# 1. Install Ollama (if not already installed)
 brew install ollama  # macOS
 
-# 2. 启动 Ollama 服务
+# 2. Start the Ollama service
 ollama serve
 
-# 3. 拉取 bge-m3 嵌入模型（首次需要）
+# 3. Pull the bge-m3 embedding model (first time only)
 ollama pull bge-m3
 ```
 
-> Ollama 默认运行在 `http://localhost:11434`
+> Ollama runs on `http://localhost:11434` by default
 
-### 第三步：启动后端
+### Step 3: Start the backend
 
 ```bash
-# 进入后端目录
+# Enter the backend directory
 cd chatmind
 
-# 方式一：使用 Maven
+# Option 1: use Maven
 mvn spring-boot:run
 
-# 方式二：使用 Maven Wrapper（无需安装 Maven）
+# Option 2: use the Maven Wrapper (no Maven installation needed)
 ./mvnw spring-boot:run
 
-# 方式三：先编译再运行
+# Option 3: compile first, then run
 mvn clean package -DskipTests
 java -jar target/chatmind-0.0.1-SNAPSHOT.jar
 ```
 
-> 后端默认运行在 `http://localhost:8080`
+> The backend runs on `http://localhost:8080` by default
 >
-> 首次启动会自动执行 SQL 迁移（V3 Skill 表 + V4 长期记忆表）
+> On first startup, SQL migrations run automatically (V3 Skill tables + V4 long-term memory table)
 
-### 第四步：启动前端
+### Step 4: Start the frontend
 
 ```bash
-# 进入前端目录
+# Enter the frontend directory
 cd ui
 
-# 安装依赖（首次需要）
+# Install dependencies (first time only)
 npm install
 
-# 开发模式启动
+# Start in development mode
 npm run dev
 ```
 
-> 前端默认运行在 `http://localhost:5173`
+> The frontend runs on `http://localhost:5173` by default
 >
-> 前端通过 `http://localhost:8080/api` 调用后端 REST API
-> 前端通过 `http://localhost:8080/sse/connect/{sessionId}` 建立 SSE 连接
+> The frontend calls the backend REST API at `http://localhost:8080/api`
+> The frontend opens an SSE connection at `http://localhost:8080/sse/connect/{sessionId}`
 
-### 第五步：验证启动
+### Step 5: Verify the setup
 
 ```bash
-# 检查后端健康
+# Check backend health
 curl http://localhost:8080/api/agents
-# 期望返回：{"code":200,"message":"success","data":{"agents":[]}}
+# Expected: {"code":200,"message":"success","data":{"agents":[]}}
 
-# 检查 Ollama 可用
+# Check that Ollama is available
 curl http://localhost:11434/api/tags
-# 期望返回包含 bge-m3 的模型列表
+# Expected: a model list containing bge-m3
 ```
 
-打开浏览器访问 `http://localhost:5173`，即可使用 ChatMind。
+Open `http://localhost:5173` in a browser to start using ChatMind.
 
-### 可选配置
+### Optional Configuration
 
-| 配置项 | 位置 | 说明 |
-|--------|------|------|
-| DeepSeek API Key | `application.yaml` → `spring.ai.deepseek.api-key` | DeepSeek 模型调用密钥 |
-| ZhipuAI API Key | `application.yaml` → `spring.ai.zhipuai.api-key` | GLM-4 模型调用密钥 |
-| Brave Search API Key | `application.yaml` → `brave.api-key` | 联网搜索功能（可选，为空则搜索工具返回提示） |
-| 邮件 SMTP | `application.yaml` → `spring.mail.*` | 邮件工具发送功能 |
-| 文档存储路径 | `application.yaml` → `document.storage.base-path` | 上传文档的本地存储目录，默认 `./data/documents` |
+| Setting | Location | Description |
+|---------|----------|-------------|
+| DeepSeek API Key | `application.yaml` → `spring.ai.deepseek.api-key` | Key for calling the DeepSeek model |
+| ZhipuAI API Key | `application.yaml` → `spring.ai.zhipuai.api-key` | Key for calling the GLM-4 model |
+| Brave Search API Key | `application.yaml` → `brave.api-key` | Web search (optional; if empty, the search tool returns a notice) |
+| Mail SMTP | `application.yaml` → `spring.mail.*` | Email sending for the mail tool |
+| Document storage path | `application.yaml` → `document.storage.base-path` | Local storage directory for uploaded documents, defaults to `./data/documents` |
 
-### 运行测试
+### Running Tests
 
 ```bash
-# 后端单元测试（83 个）
+# Backend unit tests (83 of them)
 cd chatmind
 mvn test
 
-# 前端 TypeScript 类型检查
+# Frontend TypeScript type checking
 cd ui
 npx tsc --noEmit
 ```
 
 ---
 
-## 详细功能说明
+## Detailed Feature Documentation
 
-### 1. Agent CRUD + 多模型
+### 1. Agent CRUD + Multi-Model
 
-**描述：** 完整的 Agent 智能体管理，支持创建、查询、更新、删除。每个 Agent 可独立配置模型、系统提示词、工具、知识库和技能。
+**Description:** Full Agent management with create, read, update, and delete. Each Agent can be
+configured independently with its own model, system prompt, tools, knowledge base, and skills.
 
-**多模型架构：**
-- `@Bean("deepseek-chat")` — DeepSeek Chat 模型
-- `@Bean("glm-4.6")` — 智谱 GLM-4 模型
-- 通过 `ChatClientRegistry` 根据 Agent 配置的 model 字段动态路由
+**Multi-model architecture:**
+- `@Bean("deepseek-chat")` — DeepSeek Chat model
+- `@Bean("glm-4.6")` — ZhipuAI GLM-4 model
+- `ChatClientRegistry` routes dynamically based on the Agent's configured `model` field
 
-**API 端点：**
-| 方法 | 路径 | 描述 |
-|------|------|------|
-| GET | `/api/agents` | 获取所有 Agent |
-| POST | `/api/agents` | 创建 Agent |
-| PATCH | `/api/agents/{agentId}` | 更新 Agent |
-| DELETE | `/api/agents/{agentId}` | 删除 Agent |
+**API endpoints:**
+| Method | Path | Description |
+|--------|------|-------------|
+| GET | `/api/agents` | Get all Agents |
+| POST | `/api/agents` | Create an Agent |
+| PATCH | `/api/agents/{agentId}` | Update an Agent |
+| DELETE | `/api/agents/{agentId}` | Delete an Agent |
 
-**核心文件：**
+**Key files:**
 - `controller/AgentController.java`
 - `service/AgentFacadeService.java` → `impl/AgentFacadeServiceImpl.java`
 - `model/entity/Agent.java`, `model/dto/AgentDTO.java`, `model/vo/AgentVO.java`
@@ -209,177 +219,187 @@ npx tsc --noEmit
 
 ---
 
-### 2. SSE 实时流式输出
+### 2. SSE Real-Time Streaming Output
 
-**描述：** 使用 Server-Sent Events 实现 AI 回复的实时流式推送。前端通过 EventSource 建立长连接，后端通过 SseEmitter 推送 token 级别的流式数据。
+**Description:** Uses Server-Sent Events to stream AI replies in real time. The frontend opens a
+long-lived connection via EventSource, and the backend pushes token-level streaming data through an
+SseEmitter.
 
-**SSE 消息类型：**
-| 类型 | 描述 |
-|------|------|
-| `AI_TOKEN` | 单个 token 流式推送 |
-| `AI_GENERATED_CONTENT` | 完整生成内容（含 tool call 信息） |
-| `AI_PLANNING` | Agent 规划阶段状态 |
-| `AI_THINKING` | Agent 思考阶段状态 |
-| `AI_EXECUTING` | Agent 执行阶段状态 |
-| `AI_DONE` | Agent 完成 |
-| `AWAITING_CONFIRMATION` | 等待用户确认（HITL） |
+**SSE message types:**
+| Type | Description |
+|------|-------------|
+| `AI_TOKEN` | A single streamed token |
+| `AI_GENERATED_CONTENT` | Full generated content (including tool call information) |
+| `AI_PLANNING` | Agent planning phase status |
+| `AI_THINKING` | Agent thinking phase status |
+| `AI_EXECUTING` | Agent executing phase status |
+| `AI_DONE` | Agent finished |
+| `AWAITING_CONFIRMATION` | Awaiting user confirmation (HITL) |
 
-**连接流程：**
-1. 前端 `new EventSource("/sse/connect/{chatSessionId}")`
-2. 后端创建 `SseEmitter`，存入 `ConcurrentHashMap<chatSessionId, emitter>`
-3. 发送 `init` 事件通知前端握手完成
-4. 后续 AI 响应通过该 emitter 推送
+**Connection flow:**
+1. Frontend calls `new EventSource("/sse/connect/{chatSessionId}")`
+2. Backend creates an `SseEmitter` and stores it in `ConcurrentHashMap<chatSessionId, emitter>`
+3. An `init` event is sent to tell the frontend the handshake is complete
+4. Subsequent AI responses are pushed through that emitter
 
-**核心文件：**
+**Key files:**
 - `controller/SseController.java`
 - `service/SseService.java` → `impl/SseServiceImpl.java`
 - `message/SseMessage.java`
-- `ui/src/components/views/AgentChatView.tsx`（前端 EventSource 监听）
+- `ui/src/components/views/AgentChatView.tsx` (frontend EventSource listener)
 
 ---
 
-### 3. ReAct Agent 循环
+### 3. ReAct Agent Loop
 
-**描述：** 实现了 ReAct（Reasoning + Acting）范式的 Agent 循环。Agent 收到用户输入后，经历 **计划 → 思考 → 执行** 的迭代循环，直到产出最终回答。
+**Description:** Implements an Agent loop following the ReAct (Reasoning + Acting) paradigm. After
+receiving user input, the Agent goes through an iterative **plan → think → execute** loop until it
+produces a final answer.
 
-**循环流程：**
+**Loop flow:**
 ```
 run()
-  ├── injectLongTermMemory()    // 注入跨会话记忆
-  ├── plan()                     // 规划执行计划
-  └── step() × N (最多 maxIterations)
-        ├── compressMemoryIfNeeded()  // 压缩上下文
-        ├── think()                    // LLM 推理，决定调用哪个工具
-        └── execute()                  // 执行工具调用
-              ├── isHighRiskTool()?    // HITL 检查
-              │     └── AWAITING_CONFIRMATION → 等待用户确认
+  ├── injectLongTermMemory()    // Inject cross-session memory
+  ├── plan()                     // Plan the execution steps
+  └── step() × N (up to maxIterations)
+        ├── compressMemoryIfNeeded()  // Compress the context
+        ├── think()                    // LLM reasoning, decides which tool to call
+        └── execute()                  // Execute the tool call
+              ├── isHighRiskTool()?    // HITL check
+              │     └── AWAITING_CONFIRMATION → wait for user confirmation
               └── ToolCallingManager.executeToolCalls()
   finally:
-      persistLongTermMemory()         // 提取关键信息持久化
+      persistLongTermMemory()         // Extract and persist key information
 ```
 
-**状态管理：**
-- `AgentState` 枚举：`IDLE → PLANNING → THINKING → EXECUTING → FINISHED`
-- 每次状态变化通过 SSE 实时推送给前端
+**State management:**
+- `AgentState` enum: `IDLE → PLANNING → THINKING → EXECUTING → FINISHED`
+- Every state change is pushed to the frontend in real time via SSE
 
-**核心文件：**
-- `agent/ChatMind.java` — Agent 核心实现
-- `agent/ChatMindFactory.java` — Agent 工厂，注入所有依赖
-- `agent/AgentState.java` — 状态枚举
+**Key files:**
+- `agent/ChatMind.java` — core Agent implementation
+- `agent/ChatMindFactory.java` — Agent factory, injects all dependencies
+- `agent/AgentState.java` — state enum
 
 ---
 
-### 4. RAG 知识库检索
+### 4. RAG Knowledge Base Retrieval
 
-**描述：** 完整的 RAG (Retrieval-Augmented Generation) 流水线，支持 Markdown 文档上传、自动分块、向量化、相似度检索。
+**Description:** A complete RAG (Retrieval-Augmented Generation) pipeline supporting Markdown
+document upload, automatic chunking, vectorization, and similarity retrieval.
 
-**RAG 流水线：**
+**RAG pipeline:**
 ```
-Markdown 上传 → 分段(含200字重叠) → bge-m3 Embedding → pgvector 存储
+Markdown upload → chunking (200-char overlap) → bge-m3 embedding → pgvector storage
                                                               ↓
-用户查询 → bge-m3 Embedding → pgvector 相似度检索(top-5) → Rerank(top-3) → 注入 Prompt
+User query → bge-m3 embedding → pgvector similarity search (top-5) → Rerank (top-3) → inject into prompt
 ```
 
-**关键技术：**
-- **向量数据库：** PostgreSQL + pgvector 扩展，使用 `<->` L2 距离算子
-- **嵌入模型：** bge-m3 (Ollama 本地部署)
-- **Chunk 重叠：** 相邻段落重叠 200 字符，防止语义断裂
-- **Metadata 标题：** 每个 chunk 存储对应的 Markdown 标题，检索结果展示为 `【标题】内容`
-- **Rerank：** 先召回 top-5，再用 LLM 重排序选出 top-3
+**Key techniques:**
+- **Vector database:** PostgreSQL + the pgvector extension, using the `<->` L2 distance operator
+- **Embedding model:** bge-m3 (deployed locally via Ollama)
+- **Chunk overlap:** adjacent chunks overlap by 200 characters to prevent semantic breaks
+- **Metadata titles:** each chunk stores its corresponding Markdown heading; retrieval results are
+  shown as `【Title】content`
+- **Rerank:** recall top-5 first, then use an LLM to rerank and select the top-3
 
-**API 端点：**
-| 方法 | 路径 | 描述 |
-|------|------|------|
-| GET | `/api/knowledge-bases` | 获取所有知识库 |
-| POST | `/api/knowledge-bases` | 创建知识库 |
-| PATCH | `/api/knowledge-bases/{id}` | 更新知识库 |
-| DELETE | `/api/knowledge-bases/{id}` | 删除知识库 |
-| GET | `/api/documents` | 获取所有文档 |
-| GET | `/api/documents/kb/{kbId}` | 获取知识库下文档 |
-| POST | `/api/documents/upload` | 上传文档 |
-| POST | `/api/documents/{id}/reprocess` | 重新处理文档 |
-| DELETE | `/api/documents/{id}` | 删除文档 |
+**API endpoints:**
+| Method | Path | Description |
+|--------|------|-------------|
+| GET | `/api/knowledge-bases` | Get all knowledge bases |
+| POST | `/api/knowledge-bases` | Create a knowledge base |
+| PATCH | `/api/knowledge-bases/{id}` | Update a knowledge base |
+| DELETE | `/api/knowledge-bases/{id}` | Delete a knowledge base |
+| GET | `/api/documents` | Get all documents |
+| GET | `/api/documents/kb/{kbId}` | Get documents in a knowledge base |
+| POST | `/api/documents/upload` | Upload a document |
+| POST | `/api/documents/{id}/reprocess` | Reprocess a document |
+| DELETE | `/api/documents/{id}` | Delete a document |
 
-**核心文件：**
-- `service/RagService.java` → `impl/RagServiceImpl.java` — 向量检索 + Embedding
-- `service/impl/DocumentFacadeServiceImpl.java` — 文档处理、Chunk 切分
-- `service/RerankService.java` → `impl/RerankServiceImpl.java` — LLM 重排序
-- `agent/tools/KnowledgeTools.java` — Agent 调用的知识库检索工具
+**Key files:**
+- `service/RagService.java` → `impl/RagServiceImpl.java` — vector retrieval + embedding
+- `service/impl/DocumentFacadeServiceImpl.java` — document processing, chunk splitting
+- `service/RerankService.java` → `impl/RerankServiceImpl.java` — LLM reranking
+- `agent/tools/KnowledgeTools.java` — knowledge base retrieval tool called by the Agent
 - `mapper/ChunkBgeM3Mapper.java` + `ChunkBgeM3Mapper.xml` — pgvector SQL
 
 ---
 
-### 5. Brave Search 联网搜索工具
+### 5. Brave Search Web Search Tool
 
-**描述：** Agent 通过 Brave Search API 实现联网搜索能力，RAG 查不到时可 fallback 到网络搜索。
+**Description:** Gives the Agent web search capability through the Brave Search API, so it can fall
+back to web search when RAG finds nothing.
 
-**实现方式：**
-- 使用 `RestClient` 调用 Brave Search API
-- `@Component` 自动注册，`ToolType.OPTIONAL`（可选工具）
-- 无 API Key 时返回友好提示，不会报错
-- 返回 top-5 搜索结果（标题 + 描述 + URL）
+**Implementation:**
+- Calls the Brave Search API using `RestClient`
+- Auto-registered via `@Component`, marked `ToolType.OPTIONAL`
+- Returns a friendly notice rather than an error when no API key is configured
+- Returns the top-5 search results (title + description + URL)
 
-**配置：**
+**Configuration:**
 ```yaml
 brave:
   api-key: your-api-key-here  # application.yaml
 ```
 
-**核心文件：**
+**Key files:**
 - `agent/tools/WebSearchTools.java`
 
 ---
 
-### 6. Database Query 数据库查询工具
+### 6. Database Query Tool
 
-**描述：** Agent 可以直接查询业务数据库，支持自然语言转 SQL 查询。
+**Description:** The Agent can query the business database directly, supporting natural-language-to-SQL
+queries.
 
-**安全措施：**
-- 正则过滤：拒绝 INSERT/UPDATE/DELETE/DROP/ALTER/TRUNCATE/CREATE 等危险操作
-- 仅允许 SELECT 和 WITH/CTE 查询
-- 自动追加 `LIMIT 50` 防止超大响应
-- 错误信息不暴露堆栈
+**Safety measures:**
+- Regex filtering: rejects dangerous operations such as INSERT/UPDATE/DELETE/DROP/ALTER/TRUNCATE/CREATE
+- Only SELECT and WITH/CTE queries are permitted
+- Automatically appends `LIMIT 50` to prevent oversized responses
+- Error messages do not expose stack traces
 
-**核心文件：**
+**Key files:**
 - `agent/tools/DataBaseTools.java`
 
 ---
 
-### 7. Skill 技能编排系统
+### 7. Skill Orchestration System
 
-**描述：** Skill 是 Tool 的更高层抽象。Tool 是原子能力，Skill 是 Tool 的编排组合。Agent 按需勾选 Skill，实现灵活的能力配置。
+**Description:** A Skill is a higher-level abstraction over a Tool. Tools are atomic capabilities;
+Skills are orchestrated combinations of Tools. Agents select the Skills they need, allowing flexible
+capability configuration.
 
-**数据模型：**
+**Data model:**
 ```
 Skill
 ├── id (UUID)
-├── name (技能名称)
-├── description (描述)
-├── tools (JSON Array: 关联的工具名列表)
-├── triggerKeywords (JSON Array: 触发关键词)
-└── promptTemplate (提示词模板)
+├── name (skill name)
+├── description (description)
+├── tools (JSON Array: names of the associated tools)
+├── triggerKeywords (JSON Array: trigger keywords)
+└── promptTemplate (prompt template)
 ```
 
-**预置技能：**
-| 技能 | 包含工具 |
-|------|---------|
-| 智能问答 | KnowledgeTool |
-| 联网搜索 | WebSearchTool |
-| 数据分析 | DatabaseQueryTool |
+**Built-in skills:**
+| Skill | Included Tools |
+|-------|---------------|
+| Intelligent Q&A | KnowledgeTool |
+| Web Search | WebSearchTool |
+| Data Analysis | DatabaseQueryTool |
 
-**API 端点：**
-| 方法 | 路径 | 描述 |
-|------|------|------|
-| GET | `/api/skills` | 获取所有技能 |
-| GET | `/api/skills/{id}` | 获取技能详情 |
-| POST | `/api/skills` | 创建技能 |
-| PATCH | `/api/skills/{id}` | 更新技能 |
-| DELETE | `/api/skills/{id}` | 删除技能 |
+**API endpoints:**
+| Method | Path | Description |
+|--------|------|-------------|
+| GET | `/api/skills` | Get all skills |
+| GET | `/api/skills/{id}` | Get skill details |
+| POST | `/api/skills` | Create a skill |
+| PATCH | `/api/skills/{id}` | Update a skill |
+| DELETE | `/api/skills/{id}` | Delete a skill |
 
-**Agent 关联：**
-- Agent 新增 `allowedSkills` 字段（JSON 数组），存储允许使用的 Skill ID 列表
+**Agent association:**
+- Agents gain an `allowedSkills` field (JSON array) storing the list of permitted Skill IDs
 
-**核心文件：**
+**Key files:**
 - `model/entity/Skill.java`, `model/dto/SkillDTO.java`, `model/vo/SkillVO.java`
 - `controller/SkillController.java`
 - `service/SkillFacadeService.java` → `impl/SkillFacadeServiceImpl.java`
@@ -389,116 +409,126 @@ Skill
 
 ---
 
-### 8. 记忆压缩（滑动窗口 + LLM 摘要）
+### 8. Memory Compression (Sliding Window + LLM Summary)
 
-**描述：** 解决上下文爆炸问题。当对话消息超过 15 条时，自动将旧消息压缩为 LLM 生成的摘要，保留最近 5 条完整对话。
+**Description:** Solves context explosion. Once a conversation exceeds 15 messages, older messages
+are automatically compressed into an LLM-generated summary while the 5 most recent exchanges are
+kept in full.
 
-**压缩策略：**
+**Compression strategy:**
 ```
-消息数 ≤ 15 → 不压缩，保持完整上下文
-消息数 > 15 → 旧消息(前N-5条) → LLM 生成摘要 → [摘要] + [最近5条]
+message count ≤ 15 → no compression, full context retained
+message count > 15 → old messages (first N-5) → LLM summary → [summary] + [5 most recent]
 ```
 
-**核心文件：**
+**Key files:**
 - `service/MemoryCompressionService.java` → `impl/MemoryCompressionServiceImpl.java`
-- `agent/ChatMind.java` — `compressMemoryIfNeeded()` 方法
+- `agent/ChatMind.java` — the `compressMemoryIfNeeded()` method
 
 ---
 
-### 9. Chunk 重叠 + Metadata 标题
+### 9. Chunk Overlap + Metadata Titles
 
-**描述：** 改进文档分块策略，解决 chunk 边界处的语义丢失问题。
+**Description:** An improved document chunking strategy that addresses semantic loss at chunk
+boundaries.
 
-**Chunk 重叠：**
-- 相邻 chunk 之间有 200 字符的重叠区域
-- 从第 2 个 chunk 开始，前置上一个 chunk 末尾 200 字符
+**Chunk overlap:**
+- Adjacent chunks share a 200-character overlap region
+- From the second chunk onward, the last 200 characters of the previous chunk are prepended
 
-**Metadata 标题：**
-- 每个 chunk 存储其所属的 Markdown 标题（如 `{"title":"孙悟空"}`）
-- 检索结果展示为 `【孙悟空】chunk内容...`，帮助 LLM 理解上下文来源
+**Metadata titles:**
+- Each chunk stores the Markdown heading it belongs to (e.g. `{"title":"孙悟空"}`)
+- Retrieval results are shown as `【孙悟空】chunk content...`, helping the LLM understand where the
+  context came from
 
-**核心文件：**
-- `service/impl/DocumentFacadeServiceImpl.java` — 分块逻辑
-- `service/impl/RagServiceImpl.java` — 检索结果格式化
+**Key files:**
+- `service/impl/DocumentFacadeServiceImpl.java` — chunking logic
+- `service/impl/RagServiceImpl.java` — retrieval result formatting
 
 ---
 
-### 10. Rerank 重排序 (LLM-based)
+### 10. Rerank (LLM-based)
 
-**描述：** 两阶段检索：先用向量相似度召回 top-5 候选，再用 LLM 对候选结果重排序选出最相关的 top-3。
+**Description:** Two-stage retrieval: first recall the top-5 candidates by vector similarity, then
+have an LLM rerank them and select the 3 most relevant.
 
-**重排序流程：**
-1. pgvector 向量检索 → top-5 候选
-2. 构建 Rerank Prompt → 传入 LLM
-3. LLM 返回排序后的索引列表
-4. 取 top-3 作为最终检索结果
+**Reranking flow:**
+1. pgvector vector retrieval → top-5 candidates
+2. Build a rerank prompt → send to the LLM
+3. The LLM returns a reordered index list
+4. Take the top-3 as the final retrieval result
 
-**容错机制：**
-- 如果 LLM 返回格式异常，fallback 到原始排序（取前 3 条）
+**Fault tolerance:**
+- If the LLM returns a malformed response, fall back to the original ordering (take the first 3)
 
-**核心文件：**
+**Key files:**
 - `service/RerankService.java` → `impl/RerankServiceImpl.java`
-- `agent/tools/KnowledgeTools.java` — 调用 Rerank
+- `agent/tools/KnowledgeTools.java` — invokes rerank
 
 ---
 
-### 11. Plan 规划阶段
+### 11. Plan Phase
 
-**描述：** 对复杂问题，Agent 在执行前先生成执行计划。计划通过 SSE 推送 `AI_PLANNING` 类型消息给前端展示。
+**Description:** For complex questions, the Agent generates an execution plan before acting. The
+plan is pushed to the frontend for display as an `AI_PLANNING` SSE message.
 
-**触发条件：**
-- 用户消息包含问号（?/？）
-- 用户消息长度 > 20 字符
+**Trigger conditions:**
+- The user message contains a question mark (?/？)
+- The user message is longer than 20 characters
 
-**核心文件：**
-- `agent/ChatMind.java` — `plan()` 和 `needsPlanning()` 方法
+**Key files:**
+- `agent/ChatMind.java` — the `plan()` and `needsPlanning()` methods
 
 ---
 
-### 12. Human-in-the-loop 人工确认
+### 12. Human-in-the-Loop Confirmation
 
-**描述：** 高危工具（如数据库查询、邮件发送）执行前，Agent 暂停并通过 SSE 推送确认请求，等待用户在前端弹窗中批准或拒绝。
+**Description:** Before executing a high-risk tool (such as a database query or sending email), the
+Agent pauses and pushes a confirmation request over SSE, waiting for the user to approve or reject
+it in a frontend dialog.
 
-**确认流程：**
+**Confirmation flow:**
 ```
 Agent.execute() → isHighRiskTool()?
-  → Yes → SSE 推送 AWAITING_CONFIRMATION
-  → 前端弹出确认框
-  → 用户点击 批准/拒绝
+  → Yes → push AWAITING_CONFIRMATION over SSE
+  → frontend shows a confirmation dialog
+  → user clicks Approve / Reject
   → POST /sse/confirm/{confirmationId}
   → CompletableFuture.complete()
-  → Agent 继续/跳过
+  → Agent continues / skips
 ```
 
-**高危工具：**
-- `DatabaseQueryTool` — 数据库查询
-- `EmailTool` — 邮件发送
+**High-risk tools:**
+- `DatabaseQueryTool` — database queries
+- `EmailTool` — sending email
 
-**超时机制：**
-- 60 秒无响应自动拒绝，并清理 pending 状态
+**Timeout behavior:**
+- Automatically rejected after 60 seconds with no response, and the pending state is cleaned up
 
-**核心文件：**
+**Key files:**
 - `service/ConfirmationService.java` → `impl/ConfirmationServiceImpl.java`
-- `message/SseMessage.java` — `AWAITING_CONFIRMATION` 类型
+- `message/SseMessage.java` — the `AWAITING_CONFIRMATION` type
 - `controller/SseController.java` — `POST /sse/confirm/{confirmationId}`
-- `ui/src/components/views/AgentChatView.tsx` — 确认 Modal
+- `ui/src/components/views/AgentChatView.tsx` — confirmation modal
 
 ---
 
-### 13. 长期记忆（跨会话持久化）
+### 13. Long-Term Memory (Cross-Session Persistence)
 
-**描述：** Agent 会话结束后，LLM 自动提取用户关键信息（名字、偏好、事实）持久化到数据库。新会话开始时自动注入，实现跨会话记忆。
+**Description:** After an Agent session ends, the LLM automatically extracts key user information
+(name, preferences, facts) and persists it to the database. It is injected automatically when a new
+session begins, giving the Agent memory across sessions.
 
-**记忆提取：**
-- Agent `run()` 结束时，在 `finally` 块中调用 `persistLongTermMemory()`
-- LLM 从对话中提取 key:value 对（如 `user_name:张三`）
-- 使用 PostgreSQL `ON CONFLICT DO UPDATE` 实现 UPSERT
+**Memory extraction:**
+- `persistLongTermMemory()` is called in the `finally` block when the Agent's `run()` completes
+- The LLM extracts key:value pairs from the conversation (e.g. `user_name:张三`)
+- PostgreSQL `ON CONFLICT DO UPDATE` implements the UPSERT
 
-**记忆注入：**
-- Agent `run()` 开始时调用 `injectLongTermMemory()`
-- 将所有记忆格式化为 SystemMessage 前置到对话
+**Memory injection:**
+- `injectLongTermMemory()` is called when the Agent's `run()` begins
+- All memories are formatted into a SystemMessage prepended to the conversation
 
-**数据模型：**
+**Data model:**
 ```sql
 CREATE TABLE long_term_memory (
   id UUID PRIMARY KEY,
@@ -511,7 +541,7 @@ CREATE TABLE long_term_memory (
 );
 ```
 
-**核心文件：**
+**Key files:**
 - `model/entity/LongTermMemory.java`
 - `mapper/LongTermMemoryMapper.java` + `LongTermMemoryMapper.xml`
 - `service/LongTermMemoryService.java` → `impl/LongTermMemoryServiceImpl.java`
@@ -519,369 +549,399 @@ CREATE TABLE long_term_memory (
 
 ---
 
-### 14. QA 评测 + LLM-as-Judge
+### 14. QA Evaluation + LLM-as-Judge
 
-**描述：** 自动化 RAG 质量评估系统，支持 Recall@3、MRR 指标和 LLM 语义评分。
+**Description:** An automated RAG quality evaluation system supporting Recall@3 and MRR metrics plus
+LLM semantic scoring.
 
-**评测指标：**
-| 指标 | 描述 |
-|------|------|
-| Recall@3 | top-3 检索结果中包含期望内容的比例 |
-| MRR (Mean Reciprocal Rank) | 首个正确结果的排名倒数的平均值 |
-| LLM-as-Judge Score | LLM 对检索结果与问题相关性的评分 (0-1) |
+**Evaluation metrics:**
+| Metric | Description |
+|--------|-------------|
+| Recall@3 | The proportion of top-3 retrieval results containing the expected content |
+| MRR (Mean Reciprocal Rank) | The average of the reciprocal rank of the first correct result |
+| LLM-as-Judge Score | The LLM's relevance score for retrieval results against the question (0-1) |
 
-**评测数据集：**
-- `resources/evaluation/qa-dataset.json` — 50 条 QA 测试数据，覆盖全部 15 个 chunk
+**Evaluation dataset:**
+- `resources/evaluation/qa-dataset.json` — 50 QA test cases covering all 15 chunks
 
-**API 端点：**
-| 方法 | 路径 | 描述 |
-|------|------|------|
-| POST | `/api/evaluation/run?kbId=xxx` | 基础评测 (Recall + MRR) |
-| POST | `/api/evaluation/run-with-judge?kbId=xxx` | 含 LLM-as-Judge 评测 |
+**API endpoints:**
+| Method | Path | Description |
+|--------|------|-------------|
+| POST | `/api/evaluation/run?kbId=xxx` | Basic evaluation (Recall + MRR) |
+| POST | `/api/evaluation/run-with-judge?kbId=xxx` | Evaluation including LLM-as-Judge |
 
-**核心文件：**
+**Key files:**
 - `service/EvaluationService.java` → `impl/EvaluationServiceImpl.java`
 - `controller/EvaluationController.java`
 - `model/dto/EvaluationResult.java`, `EvaluationReport.java`
 
 ---
 
-### 15. 全接口日志
+### 15. Logging Across All Endpoints
 
-**描述：** 所有 9 个 Controller 均添加了 `@Slf4j` 注解和标准化的 try-catch 日志模式。
+**Description:** All 9 Controllers carry the `@Slf4j` annotation and a standardized try-catch logging
+pattern.
 
-**日志模式：**
+**Logging pattern:**
 ```java
 @Slf4j
 public class XxxController {
     public ApiResponse<T> method() {
         log.info("[XxxController] method called, params...");
         try {
-            // 业务逻辑
+            // business logic
             log.info("[XxxController] method success, result...");
             return ApiResponse.success(result);
         } catch (Exception e) {
             log.error("[XxxController] method failed, params...", e);
-            throw e; // GlobalExceptionHandler 统一处理
+            throw e; // handled centrally by GlobalExceptionHandler
         }
     }
 }
 ```
 
-**覆盖的 Controller：**
+**Controllers covered:**
 - AgentController, ChatMessageController, ChatSessionController
 - DocumentController, EvaluationController, KnowledgeBaseController
 - SkillController, SseController, ToolController
 
 ---
 
-### 16. 前端 HITL 确认框
+### 16. Frontend HITL Confirmation Dialog
 
-**描述：** 当 Agent 请求执行高危工具时，前端弹出确认对话框，用户可以批准或拒绝。
+**Description:** When the Agent requests execution of a high-risk tool, the frontend opens a
+confirmation dialog where the user can approve or reject it.
 
-**UI 交互：**
-1. SSE 收到 `AWAITING_CONFIRMATION` 消息
-2. 弹出 Ant Design Modal 显示工具名称和参数
-3. 用户点击「批准执行」或「拒绝」
-4. 前端调用 `POST /sse/confirm/{confirmationId}` 发送确认结果
+**UI interaction:**
+1. An `AWAITING_CONFIRMATION` message arrives over SSE
+2. An Ant Design Modal opens showing the tool name and arguments
+3. The user clicks "Approve" or "Reject"
+4. The frontend calls `POST /sse/confirm/{confirmationId}` with the result
 
-**核心文件：**
+**Key files:**
 - `ui/src/components/views/AgentChatView.tsx`
-- `ui/src/types/index.ts` — 新增 `AWAITING_CONFIRMATION` 类型
-- `ui/src/api/api.ts` — 新增 `confirmAction()` 函数
+- `ui/src/types/index.ts` — added the `AWAITING_CONFIRMATION` type
+- `ui/src/api/api.ts` — added the `confirmAction()` function
 
 ---
 
-### 17. 前端 Skill 配置面板
+### 17. Frontend Skill Configuration Panel
 
-**描述：** Agent 创建/编辑模态框中新增「技能配置」标签页，支持为 Agent 勾选可用的技能组合。
+**Description:** The Agent create/edit modal gains a "Skill Configuration" tab where Skills can be
+selected for an Agent.
 
-**UI 交互：**
-- AddAgentModal 中新增「技能配置」菜单项
-- 列表展示所有可用 Skill，显示名称、描述和包含的工具标签
-- 勾选/取消勾选 Skill
-- 保存时提交 `allowedSkills` 字段
+**UI interaction:**
+- A "Skill Configuration" menu item was added to AddAgentModal
+- The list shows all available Skills with their name, description, and tool tags
+- Skills can be checked and unchecked
+- The `allowedSkills` field is submitted on save
 
-**核心文件：**
+**Key files:**
 - `ui/src/components/modals/AddAgentModal.tsx`
-- `ui/src/api/api.ts` — 新增 Skill API 类型和函数
+- `ui/src/api/api.ts` — added Skill API types and functions
 
 ---
 
-### 18. 前端文档重处理按钮
+### 18. Frontend Document Reprocess Button
 
-**描述：** 知识库文档列表中，每个文档新增「重新处理」按钮，触发后端重新切分和向量化。
+**Description:** Each document in the knowledge base document list gains a "Reprocess" button that
+triggers re-chunking and re-vectorization on the backend.
 
-**使用场景：**
-- 文档首次上传后 chunk 生成失败
-- 切分策略调整后需要重新生成
-- 向量索引需要重建
+**Use cases:**
+- Chunk generation failed after the document was first uploaded
+- The chunking strategy changed and chunks need regenerating
+- The vector index needs rebuilding
 
-**核心文件：**
+**Key files:**
 - `ui/src/components/views/KnowledgeBaseView.tsx`
-- `ui/src/api/api.ts` — 新增 `reprocessDocument()` 函数
+- `ui/src/api/api.ts` — added the `reprocessDocument()` function
 
 ---
 
-## 数据库迁移
+## Database Migrations
 
-| 文件 | 描述 |
-|------|------|
-| `V3__add_skill_tables.sql` | 创建 skill 表，Agent 表新增 allowed_skills (jsonb) 列 |
-| `V4__add_long_term_memory.sql` | 创建 long_term_memory 表，含 UNIQUE(agent_id, memory_key) |
-
----
-
-## 测试覆盖
-
-| 测试文件 | 测试数 | 描述 |
-|---------|--------|------|
-| AgentControllerTest | 8 | Agent CRUD 全接口正向+异常 |
-| ChatMessageControllerTest | 8 | 消息 CRUD 全接口正向+异常 |
-| ChatSessionControllerTest | 10 | 会话 CRUD 全接口正向+异常 |
-| DocumentControllerTest | 12 | 文档 CRUD + 上传 + 重处理 正向+异常 |
-| EvaluationControllerTest | 4 | 评测 + LLM-as-Judge 正向+异常 |
-| KnowledgeBaseControllerTest | 9 | 知识库 CRUD 全接口正向+异常 |
-| SkillControllerTest | 10 | 技能 CRUD 全接口正向+异常 |
-| SseControllerTest | 5 | SSE 连接 + HITL 确认 正向+异常 |
-| ToolControllerTest | 3 | 工具列表 正向+异常 |
-| **合计** | **83** | **全部通过 ✅** |
+| File | Description |
+|------|-------------|
+| `V3__add_skill_tables.sql` | Creates the skill table; adds the allowed_skills (jsonb) column to the Agent table |
+| `V4__add_long_term_memory.sql` | Creates the long_term_memory table with UNIQUE(agent_id, memory_key) |
 
 ---
 
-## 项目结构
+## Test Coverage
+
+| Test File | Tests | Description |
+|-----------|-------|-------------|
+| AgentControllerTest | 8 | Agent CRUD, all endpoints, happy path + error cases |
+| ChatMessageControllerTest | 8 | Message CRUD, all endpoints, happy path + error cases |
+| ChatSessionControllerTest | 10 | Session CRUD, all endpoints, happy path + error cases |
+| DocumentControllerTest | 12 | Document CRUD + upload + reprocess, happy path + error cases |
+| EvaluationControllerTest | 4 | Evaluation + LLM-as-Judge, happy path + error cases |
+| KnowledgeBaseControllerTest | 9 | Knowledge base CRUD, all endpoints, happy path + error cases |
+| SkillControllerTest | 10 | Skill CRUD, all endpoints, happy path + error cases |
+| SseControllerTest | 5 | SSE connection + HITL confirmation, happy path + error cases |
+| ToolControllerTest | 3 | Tool listing, happy path + error cases |
+| **Total** | **83** | **All passing ✅** |
+
+---
+
+## Project Structure
 
 ```
 ChatMind-main/
-├── README.md             # 项目完整文档（本文件）
+├── README.md             # Full project documentation (this file)
 │
-├── chatmind/            # 后端 (Spring Boot)
+├── chatmind/            # Backend (Spring Boot)
 │   ├── pom.xml
 │   └── src/
 │       ├── main/java/com/kama/chatmind/
-│       │   ├── agent/           # Agent 核心 + 工具
+│       │   ├── agent/           # Agent core + tools
 │       │   │   ├── ChatMind.java
 │       │   │   ├── ChatMindFactory.java
 │       │   │   ├── AgentState.java
-│       │   │   └── tools/       # 工具实现
+│       │   │   └── tools/       # Tool implementations
 │       │   │       ├── KnowledgeTools.java
 │       │   │       ├── WebSearchTools.java
 │       │   │       ├── DataBaseTools.java
 │       │   │       ├── EmailTools.java
 │       │   │       └── ...
-│       │   ├── config/          # 配置类
-│       │   ├── controller/      # REST 控制器 (10个)
-│       │   ├── converter/       # DTO/VO 转换器
-│       │   ├── event/           # 事件监听
-│       │   ├── exception/       # 全局异常处理
-│       │   ├── mapper/          # MyBatis Mapper
-│       │   ├── message/         # SSE 消息定义
-│       │   ├── model/           # 实体/DTO/VO/请求/响应
-│       │   ├── service/         # 服务层 (接口 + 实现)
-│       │   └── typehandler/     # MyBatis 类型处理器
+│       │   ├── config/          # Configuration classes
+│       │   ├── controller/      # REST controllers (10)
+│       │   ├── converter/       # DTO/VO converters
+│       │   ├── event/           # Event listeners
+│       │   ├── exception/       # Global exception handling
+│       │   ├── mapper/          # MyBatis mappers
+│       │   ├── message/         # SSE message definitions
+│       │   ├── model/           # Entities/DTOs/VOs/requests/responses
+│       │   ├── service/         # Service layer (interfaces + implementations)
+│       │   └── typehandler/     # MyBatis type handlers
 │       ├── main/resources/
 │       │   ├── application.yaml
 │       │   ├── mapper/          # MyBatis XML
-│       │   ├── db/              # SQL 迁移
-│       │   └── evaluation/      # QA 评测数据集
-│       └── test/                # 单元测试 (83个)
+│       │   ├── db/              # SQL migrations
+│       │   └── evaluation/      # QA evaluation dataset
+│       └── test/                # Unit tests (83)
 │
-└── ui/                   # 前端 (React + TypeScript)
+└── ui/                   # Frontend (React + TypeScript)
     ├── package.json
     └── src/
-        ├── api/             # API 请求封装
-        ├── components/      # UI 组件
-        │   ├── modals/      # 模态框
-        │   ├── tabs/        # 标签页内容
-        │   └── views/       # 主视图
+        ├── api/             # API request wrappers
+        ├── components/      # UI components
+        │   ├── modals/      # Modals
+        │   ├── tabs/        # Tab content
+        │   └── views/       # Main views
         ├── contexts/        # React Context
-        ├── hooks/           # 自定义 Hooks
-        ├── layout/          # 布局组件
-        ├── types/           # TypeScript 类型
-        └── utils/           # 工具函数
+        ├── hooks/           # Custom hooks
+        ├── layout/          # Layout components
+        ├── types/           # TypeScript types
+        └── utils/           # Utility functions
 ```
 
 ---
 
-## 开发日志 (CHANGELOG)
+## Development Log (CHANGELOG)
 
-### 2026-03-22 功能迭代（面试反馈驱动）
+### 2026-03-22 Feature Iteration (Driven by Interview Feedback)
 
-#### 第一轮：核心工具 + Skill 系统
+#### Round 1: Core Tools + Skill System
 
-**1. Brave Search Tool（联网搜索）✅**
-- 使用 RestClient 调用 Brave Search API
-- `@Component` 自动注册，`ToolType.OPTIONAL`
-- 无 API Key 时返回提示信息，不会报错
-- 返回 top-5 搜索结果（标题+描述+URL）
+**1. Brave Search Tool (web search) ✅**
+- Calls the Brave Search API using RestClient
+- Auto-registered via `@Component`, marked `ToolType.OPTIONAL`
+- Returns a notice rather than an error when no API key is configured
+- Returns the top-5 search results (title + description + URL)
 
-> 面试话术：
-> "我的 Agent 不仅能查本地知识库，还能联网搜索。RAG 查不到时自动 fallback 到 Brave Search。"
+> Interview talking point:
+> "My Agent can not only query a local knowledge base but also search the web. When RAG finds
+> nothing, it falls back to Brave Search automatically."
 
-**2. Database Query Tool（数据库查询）✅**
-- 注入 JdbcTemplate，执行只读 SQL
-- 安全限制：正则拒绝 INSERT/UPDATE/DELETE/DROP/ALTER/TRUNCATE/CREATE 等危险操作
-- 支持 WITH/CTE 查询，自动剥离尾部分号
-- 自动追加 LIMIT 50 防止超大响应
+**2. Database Query Tool ✅**
+- Injects JdbcTemplate and executes read-only SQL
+- Safety limits: regex rejection of INSERT/UPDATE/DELETE/DROP/ALTER/TRUNCATE/CREATE and other
+  dangerous operations
+- Supports WITH/CTE queries and strips trailing semicolons automatically
+- Automatically appends LIMIT 50 to prevent oversized responses
 
-> 面试话术：
-> "Agent 可以直接查询业务数据库，用自然语言问'有多少个 Agent'就能返回结果。"
+> Interview talking point:
+> "The Agent can query the business database directly — ask 'how many Agents are there?' in natural
+> language and it returns the result."
 
-**3. Skill 编排系统 ✅**
-- 新增 11 个文件（实体、DTO、VO、请求/响应、Converter、Mapper、Service、Controller、SQL 迁移）
-- 修改 7 个文件（Agent 相关，新增 allowedSkills 字段）
-- 预置 3 个技能：智能问答、联网搜索、数据分析
+**3. Skill Orchestration System ✅**
+- Added 11 files (entity, DTO, VO, request/response, Converter, Mapper, Service, Controller, SQL
+  migration)
+- Modified 7 files (Agent-related, adding the allowedSkills field)
+- Three built-in skills: Intelligent Q&A, Web Search, Data Analysis
 
-> 面试话术：
-> "我实现了 Skill 可配置化——Tool 是原子能力，Skill 是 Tool 的编排。Agent 按需勾选 Skill。"
+> Interview talking point:
+> "I made Skills configurable — Tools are atomic capabilities, Skills are orchestrations of Tools.
+> Agents select the Skills they need."
 
-#### 第二轮：RAG 增强 + 记忆系统
+#### Round 2: RAG Enhancements + Memory System
 
-**4. 记忆压缩（滑动窗口 + 摘要）✅**
-- 阈值 15 条消息，保留最近 5 条，旧消息调 LLM 生成摘要
+**4. Memory Compression (Sliding Window + Summary) ✅**
+- Threshold of 15 messages; keeps the 5 most recent and calls the LLM to summarize older messages
 
-> 面试话术：
-> "超过 15 条消息时自动压缩，旧对话生成摘要替换原始记录，保留最近 5 轮完整对话。"
+> Interview talking point:
+> "Past 15 messages it compresses automatically — older conversation is replaced by a generated
+> summary while the 5 most recent exchanges stay intact."
 
-**5. Chunk 重叠 + Metadata 标题 ✅**
-- 相邻 chunk 重叠 200 字符；metadata 存储标题 `{"title":"孙悟空"}`
-- 检索结果前置标题 `【孙悟空】content...`
+**5. Chunk Overlap + Metadata Titles ✅**
+- Adjacent chunks overlap by 200 characters; metadata stores the title `{"title":"孙悟空"}`
+- Retrieval results are prefixed with the title: `【孙悟空】content...`
 
-> 面试话术：
-> "chunk 之间有 200 字重叠防止语义断裂，metadata 存标题便于 LLM 理解上下文来源。"
+> Interview talking point:
+> "Chunks overlap by 200 characters to prevent semantic breaks, and metadata stores the title so the
+> LLM understands where the context came from."
 
-**6. Rerank 重排序 + Plan 规划 ✅**
-- LLM-based 重排序：先检索 top-5，再 Rerank 取 top-3
-- `plan()` 方法：复杂问题先规划再执行
+**6. Rerank + Plan Phase ✅**
+- LLM-based reranking: retrieve top-5 first, then rerank down to top-3
+- The `plan()` method: complex questions are planned before execution
 
-> 面试话术：
-> "RAG 检索先召回 5 条，用 LLM 重排序选 3 条，提升准确率。Agent 对复杂问题先生成执行计划再行动。"
+> Interview talking point:
+> "RAG retrieval recalls 5 results first, then an LLM reranks and picks 3, improving accuracy. For
+> complex questions the Agent generates an execution plan before acting."
 
-#### 第三轮：安全 + 评测 + 长期记忆
+#### Round 3: Safety + Evaluation + Long-Term Memory
 
-**7. Human-in-the-loop + QA 评测 ✅**
-- 确认机制：CompletableFuture 暂停执行，前端弹窗确认
-- RAG 评测：Recall@3 和 MRR 指标自动评估
-- 5 组 QA 测试数据
+**7. Human-in-the-Loop + QA Evaluation ✅**
+- Confirmation mechanism: CompletableFuture pauses execution, the frontend shows a confirmation
+  dialog
+- RAG evaluation: automatic assessment via Recall@3 and MRR metrics
+- 5 sets of QA test data
 
-> 面试话术：
-> "高危工具执行前推 AWAITING_CONFIRMATION 事件，前端弹确认框，用户批准后才继续。RAG 评测用 Recall@3 和 MRR 指标自动评估检索质量。"
+> Interview talking point:
+> "Before a high-risk tool runs, an AWAITING_CONFIRMATION event is pushed and the frontend shows a
+> confirmation dialog — execution only continues after the user approves. RAG quality is assessed
+> automatically using Recall@3 and MRR."
 
-**8. 长期记忆（跨会话持久化）✅**
-- Agent run() 开始注入长期记忆，结束时 LLM 提取关键信息持久化
-- PostgreSQL UPSERT 机制
+**8. Long-Term Memory (Cross-Session Persistence) ✅**
+- Long-term memory is injected when the Agent's run() begins, and the LLM extracts and persists key
+  information when it ends
+- Uses the PostgreSQL UPSERT mechanism
 
-> 面试话术：
-> "Agent 运行结束后自动调 LLM 提取用户关键信息（名字、偏好、事实）存到数据库。下次会话自动注入，实现跨会话记忆。"
+> Interview talking point:
+> "When the Agent finishes running, it calls the LLM to extract key user information (name,
+> preferences, facts) and stores it in the database. The next session injects it automatically,
+> giving memory across sessions."
 
-**9. QA 评测扩展 + LLM-as-Judge ✅**
-- 5 条 → 50 条测试数据，覆盖全部 15 个 chunk
-- 新增 LLM-as-Judge：DeepSeek 对检索结果打分（0-1）
-- 新增 `POST /api/evaluation/run-with-judge` 端点
+**9. QA Evaluation Expansion + LLM-as-Judge ✅**
+- Test data grew from 5 to 50 cases, covering all 15 chunks
+- Added LLM-as-Judge: DeepSeek scores retrieval results (0-1)
+- Added the `POST /api/evaluation/run-with-judge` endpoint
 
-> 面试话术：
-> "构建了 50 条 QA 测试集，支持 Recall@3 和 MRR 指标自动评估。还加了 LLM-as-Judge，用 DeepSeek 对检索结果打分（0-1），评估检索质量。"
+> Interview talking point:
+> "I built a 50-case QA test set with automatic Recall@3 and MRR assessment. I also added
+> LLM-as-Judge, using DeepSeek to score retrieval results from 0 to 1 to evaluate retrieval quality."
 
-#### Bug 修复记录
+#### Bug Fix Log
 
-| 文件 | 修复内容 |
-|------|---------|
-| `EvaluationServiceImpl.java` | InputStream 资源泄漏 → try-with-resources |
-| `EvaluationServiceImpl.java` | 空 QA 条目导致 NPE → 跳过并警告 |
+| File | Fix |
+|------|-----|
+| `EvaluationServiceImpl.java` | InputStream resource leak → try-with-resources |
+| `EvaluationServiceImpl.java` | Empty QA entries caused NPE → skip with a warning |
 | `DocumentFacadeServiceImpl.java` | System.out.println → log.debug |
-| `RagServiceImpl.java` | 向量检索返回 null → Collections.emptyList() |
-| `SkillFacadeServiceImpl.java` | Mapper 返回 null → 空列表兜底 |
-| `ConfirmationServiceImpl.java` | 无超时机制 → orTimeout(60s) + 自动清理 |
-| `RagServiceImpl.java` | WebClient 被 Spring AI 污染 → 修复 |
-| `DocumentController.java` | 添加文档重处理端点 |
-| `ChunkBgeM3Mapper.java` | 添加 deleteByDocId |
+| `RagServiceImpl.java` | Vector retrieval returned null → Collections.emptyList() |
+| `SkillFacadeServiceImpl.java` | Mapper returned null → fall back to an empty list |
+| `ConfirmationServiceImpl.java` | No timeout mechanism → orTimeout(60s) + automatic cleanup |
+| `RagServiceImpl.java` | WebClient polluted by Spring AI → fixed |
+| `DocumentController.java` | Added the document reprocess endpoint |
+| `ChunkBgeM3Mapper.java` | Added deleteByDocId |
 
-#### 验证结果
+#### Verification Results
 
-- 编译：✅ BUILD SUCCESS
-- 测试：✅ 83/83 通过
-- TypeScript：✅ 类型检查通过
-- SQL 迁移：✅ V3 Skill 表 + V4 long_term_memory 表已创建
-
----
-
-## 项目亮点
-
-**1. 真正的 Agent Loop（Think-Execute 循环 + 状态机）**
-
-不是"调用一次大模型就结束"，而是支持：
-* 多轮规划
-* 多轮工具调用
-* 状态管理（THINKING / EXECUTING / DONE / ERROR）
-* 错误处理与最大步数控制（防止无限循环）
-
-技术点："怎么避免 Agent 无限调用工具？怎么做状态管理？怎么做超时控制？"
-
-**2. 工具系统（固定工具 + 可选工具，可扩展、可治理）**
-
-ChatMind 的工具系统是"框架化"的：
-* 工具自动注册
-* 固定工具 / 可选工具分类管理
-* 可扩展：新增工具不改核心流程
-* 可控：禁用 Spring AI 自动执行，改为手动管理 ToolCalling 流程
-
-技术点："工具调用怎么做扩展？工具失败怎么处理？工具返回结果怎么进入对话历史？"
-
-**3. RAG 知识库（PostgreSQL + pgvector）**
-
-RAG 不是 PPT 概念，ChatMind 是完整链路：
-* Markdown 文档解析、分块（含 200 字重叠）
-* Embedding 生成并落库
-* pgvector 相似度检索（<->）
-* ivfflat 索引优化，支持 10 万+向量
-* LLM Rerank 重排序（top-5 → top-3）
-
-最关键的点：用 PostgreSQL 一套体系把结构化数据和向量数据都管了（部署简单、成本低、事务一致性好）
-
-**4. 多模型支持（注册表模式 ChatClientRegistry）**
-
-* DeepSeek / 智谱 AI 可切换
-* 统一 ChatClient 接口
-* 注册表模式管理模型实例（解耦创建与使用）
-* 便于未来扩展更多模型
-
-**5. SSE 实时通信（执行过程实时可视化）**
-
-ChatMind 用 SSE 做了：
-* 状态实时推送：THINKING / EXECUTING / DONE
-* 前端能实时看到"Agent 正在干啥"
-* 比 WebSocket 更简单，适合单向推送
-
-技术点：SSE 和 WebSocket 区别？连接怎么管理？超时怎么处理？并发怎么扛？
-
-**6. 安全可控（Human-in-the-loop + SQL 注入防护）**
-
-* 高危工具执行前必须用户确认
-* 数据库工具正则过滤危险 SQL
-* CompletableFuture + 60 秒超时自动拒绝
-* 全链路日志追踪
+- Compilation: ✅ BUILD SUCCESS
+- Tests: ✅ 83/83 passing
+- TypeScript: ✅ Type checking passes
+- SQL migrations: ✅ V3 Skill tables + V4 long_term_memory table created
 
 ---
 
-## 学完本项目可以掌握什么？
+## Project Highlights
 
-* AI Agent 核心：Think-Execute 循环（多轮规划 + 多轮工具调用）+ 状态机 + 超时/错误处理
-* 工具调用体系：可扩展工具框架（固定/可选工具）、工具注册与调度、手动接管 Spring AI 工具执行流程
-* RAG 全链路：Markdown 解析与分块 → Embedding 入库 → pgvector 相似度检索（索引优化、SQL 调优）
-* 多模型架构设计：ChatClientRegistry 注册表模式，支持 DeepSeek/智谱等模型动态切换与扩展
-* 后端工程能力：Spring Boot 分层架构、RESTful API、统一异常/响应、MyBatis 复杂 SQL + 自定义 TypeHandler（vector）
-* 实时通信：SSE 服务端推送、连接管理、执行状态实时展示
-* 可量化成果表达：响应 <2s、并发 100+、检索准确率 85%+ 这种"面试官一眼懂"的指标怎么做、怎么写、怎么讲
+**1. A Real Agent Loop (Think-Execute Loop + State Machine)**
+
+Not "call the LLM once and stop" — it supports:
+* Multi-round planning
+* Multi-round tool calling
+* State management (THINKING / EXECUTING / DONE / ERROR)
+* Error handling and a maximum step count (preventing infinite loops)
+
+Technical angles: "How do you stop an Agent from calling tools forever? How do you manage state? How
+do you handle timeouts?"
+
+**2. Tool System (Fixed + Optional Tools, Extensible and Governable)**
+
+ChatMind's tool system is built as a framework:
+* Tools register themselves automatically
+* Fixed and optional tools are managed as separate categories
+* Extensible: adding a tool does not change the core flow
+* Controllable: Spring AI's automatic execution is disabled in favor of manually managing the
+  ToolCalling flow
+
+Technical angles: "How do you extend tool calling? What happens when a tool fails? How do tool
+results enter the conversation history?"
+
+**3. RAG Knowledge Base (PostgreSQL + pgvector)**
+
+RAG here is not a slide-deck concept — ChatMind implements the full pipeline:
+* Markdown document parsing and chunking (with 200-character overlap)
+* Embedding generation and storage
+* pgvector similarity retrieval (`<->`)
+* ivfflat index optimization, supporting 100k+ vectors
+* LLM reranking (top-5 → top-3)
+
+The key point: PostgreSQL alone manages both structured and vector data (simple deployment, low
+cost, good transactional consistency).
+
+**4. Multi-Model Support (ChatClientRegistry Registry Pattern)**
+
+* Switchable between DeepSeek and ZhipuAI
+* A unified ChatClient interface
+* Registry pattern for managing model instances (decoupling creation from use)
+* Easy to extend with more models later
+
+**5. SSE Real-Time Communication (Live Execution Visualization)**
+
+ChatMind uses SSE to deliver:
+* Real-time state push: THINKING / EXECUTING / DONE
+* A live view of "what the Agent is doing right now"
+* Simpler than WebSocket and well suited to one-way push
+
+Technical angles: What's the difference between SSE and WebSocket? How are connections managed? How
+are timeouts handled? How does it hold up under concurrency?
+
+**6. Safe and Controllable (Human-in-the-Loop + SQL Injection Protection)**
+
+* High-risk tools require user confirmation before executing
+* The database tool filters dangerous SQL with regexes
+* CompletableFuture + automatic rejection after a 60-second timeout
+* End-to-end log tracing
 
 ---
 
-## 未来改进方向
+## What You'll Learn From This Project
 
-| 方向 | 描述 |
-|------|------|
-| MCP Server 集成 | Go MCP Server → Spring AI MCP Client |
-| 多文件异步 Embedding | 并行处理大量文档 |
-| Session-UserID 绑定 | 多用户隔离 |
-| 压力测试 | 并发性能评估 |
-| Multi-Agent 协作 | 多 Agent 协同完成复杂任务 |
+* AI Agent fundamentals: the Think-Execute loop (multi-round planning + multi-round tool calling),
+  state machines, and timeout/error handling
+* Tool-calling systems: an extensible tool framework (fixed/optional tools), tool registration and
+  dispatch, and manually taking over Spring AI's tool execution flow
+* The full RAG pipeline: Markdown parsing and chunking → embedding storage → pgvector similarity
+  retrieval (index optimization, SQL tuning)
+* Multi-model architecture design: the ChatClientRegistry registry pattern, supporting dynamic
+  switching and extension across DeepSeek, ZhipuAI, and others
+* Backend engineering skills: Spring Boot layered architecture, RESTful APIs, unified
+  exception/response handling, complex MyBatis SQL, and custom TypeHandlers (vector)
+* Real-time communication: SSE server push, connection management, and live execution state display
+* Expressing quantifiable results: how to build, write up, and talk about metrics like "<2s
+  response", "100+ concurrent", and "85%+ retrieval accuracy" that an interviewer grasps instantly
 
+---
+
+## Future Improvements
+
+| Direction | Description |
+|-----------|-------------|
+| MCP Server integration | Go MCP Server → Spring AI MCP Client |
+| Multi-file async embedding | Process large volumes of documents in parallel |
+| Session-UserID binding | Multi-user isolation |
+| Load testing | Concurrency performance assessment |
+| Multi-Agent collaboration | Multiple Agents cooperating on complex tasks |
